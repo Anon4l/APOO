@@ -6,6 +6,7 @@ public class Moeda {
     private String valorAlta;
     private String valorBaixa;
     private String time;
+    private Date data;
     
     public Moeda(String nome, String valorAlta, String valorBaixa) {
         this.nome = nome;
@@ -45,6 +46,15 @@ public class Moeda {
         Date date = new Date(Long.parseLong(time)*1000);
         Time tempo = new Time(Long.parseLong(time)*1000);
         this.time = date.toString()+"/"+tempo.toString();
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        Date date = new Date(Long.parseLong(data)*1000);
+        this.data = date;
     }
 
     @Override

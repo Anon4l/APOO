@@ -120,6 +120,7 @@ public class ApiConnector {
                 jsonArray.getJSONObject(i).get("low").toString()
             );
             obj.setTime(jsonArray.getJSONObject(i).get("timestamp").toString());
+            obj.setData(jsonArray.getJSONObject(i).get("timestamp").toString());
             arrMoedas[i] = obj;
         }
         return arrMoedas;

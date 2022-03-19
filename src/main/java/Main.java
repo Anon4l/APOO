@@ -4,9 +4,9 @@ public class Main {
     public static void main(String[] args) {
         // chama o metodo getMoeda e imprime o resultado
         try {
-            // Parametros = ("MOEDA","QTD","DATA INICIAL","DATA FINAL") SE INVERTER DA RUIM
-            Moeda[] result = ApiConnector.getMoedaTime("BRL-USD","15");
-            System.out.println(result);
+            Moeda[] result = ApiConnector.getMoedaTime("BRL-USD","1500");
+            //System.out.println(result[0].toString());
+            MoedaChart.show(result,"BRL-USD");
         } catch (UnirestException e) {
             e.printStackTrace();
         }
