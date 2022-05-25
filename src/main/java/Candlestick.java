@@ -22,7 +22,9 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.time.ohlc.OHLCSeries;
 import org.jfree.data.time.ohlc.OHLCSeriesCollection;
 
-public class Candlestick extends JPanel {
+public class Candlestick {
+
+    
 
     public static double round(double num){
         DecimalFormat df = new DecimalFormat("#.##");
@@ -30,17 +32,23 @@ public class Candlestick extends JPanel {
     }
  
     private OHLCSeries ohlcSeries;
-
+    private ChartPanel chart;
  
     public Candlestick(String title) {
         final JFreeChart candlestickChart = createChart(title);
         final ChartPanel chartPanel = new ChartPanel(candlestickChart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(1200, 500));
-        chartPanel.setMouseZoomable(true);
-        chartPanel.setMouseWheelEnabled(true);
-        add(chartPanel, BorderLayout.CENTER);
+        this.chart = chartPanel;
+        // chartPanel.setPreferredSize(new java.awt.Dimension(1200, 500));
+        // chartPanel.setMouseZoomable(true);
+        // chartPanel.setMouseWheelEnabled(true);
+        // add(chartPanel, BorderLayout.CENTER);
     }
- 
+    
+    public ChartPanel getChartPanel(){
+        return this.chart;
+    }
+    
+
     private JFreeChart createChart(String chartTitle) {
  
         /**

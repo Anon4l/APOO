@@ -1,3 +1,5 @@
+import org.jfree.chart.ChartPanel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -12,8 +14,9 @@ public class Grafico extends javax.swing.JFrame {
     /**
      * Creates new form Grafico
      */
-    public Grafico() {
-        initComponents();
+    public Grafico(ChartPanel chart) {
+        initComponents(chart);
+        
     }
 
     /**
@@ -23,7 +26,16 @@ public class Grafico extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    // public static void show(Moeda[] moeda, String title) {
+    //     //Create and set up the chart.
+    //     Candlestick Candlestick = new Candlestick(title);
+    //     Candlestick.candleGenerator(moeda);
+    //     frame.setContentPane(Candlestick);
+    //     frame.setResizable(false);
+    //     frame.pack();
+    // }
+    
+    private void initComponents(ChartPanel chart) {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextField1 = new javax.swing.JTextField();
@@ -41,7 +53,7 @@ public class Grafico extends javax.swing.JFrame {
         setTitle("Gráfico");
 
         jScrollPane1.setBackground(new java.awt.Color(250, 250, 250));
-
+        //jScrollPane1.add(chart);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -95,14 +107,14 @@ public class Grafico extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(chart, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chart, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
@@ -156,11 +168,11 @@ public class Grafico extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Grafico().setVisible(true);
-            }
-        });
+        // java.awt.EventQueue.invokeLater(new Runnable() {
+        //     public void run() {
+        //         new Grafico(chart).setVisible(true);
+        //     }
+        // });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,9 +1,11 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MoedaChart extends JPanel {
+import org.jfree.chart.ChartPanel;
 
-    public static void show(Moeda[] moeda, String title) {
+public class MoedaChart {
+
+    public static ChartPanel show(Moeda[] moeda, String title) {
         //Make sure we have nice window decorations.
         JFrame.setDefaultLookAndFeelDecorated(true);
 
@@ -14,10 +16,11 @@ public class MoedaChart extends JPanel {
         //Create and set up the chart.
         Candlestick Candlestick = new Candlestick(title);
         Candlestick.candleGenerator(moeda);
-        frame.setContentPane(Candlestick);
-        frame.setResizable(false);
-        frame.pack();
-        frame.setVisible(true);
+        return Candlestick.getChartPanel();
+        // frame.setContentPane(Candlestick);
+        // frame.setResizable(false);
+        // frame.pack();
+        // frame.setVisible(true);
     }
     
 }
