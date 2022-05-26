@@ -1,3 +1,4 @@
+package main.java;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.Date;
@@ -8,6 +9,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.AxisLocation;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.labels.StandardXYToolTipGenerator;
@@ -33,6 +35,7 @@ public class Candlestick {
  
     private OHLCSeries ohlcSeries;
     private ChartPanel chart;
+    private JFreeChart rawchart;
  
     public Candlestick(String title) {
         final JFreeChart candlestickChart = createChart(title);
@@ -46,6 +49,10 @@ public class Candlestick {
     
     public ChartPanel getChartPanel(){
         return this.chart;
+    }
+
+    public JFreeChart getRawChart(){
+        return this.rawchart;
     }
     
 
@@ -64,8 +71,9 @@ public class Candlestick {
         // Create candlestick chart renderer
         CandlestickRenderer candlestickRenderer = new CandlestickRenderer(CandlestickRenderer.WIDTHMETHOD_AVERAGE,
                 false,null);
-        // Create candlestickSubplot
+        // Create candlestickSubplot reversed
         XYPlot candlestickSubplot = new XYPlot(candlestickDataset, null, priceAxis, candlestickRenderer);
+        candlestickSubplot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_LEFT);
         candlestickSubplot.setBackgroundPaint(Color.white);
  
         DateAxis dateAxis = new DateAxis("Time");
@@ -79,6 +87,9 @@ public class Candlestick {
         mainPlot.setOrientation(PlotOrientation.VERTICAL);
         JFreeChart chart = new JFreeChart(chartTitle, JFreeChart.DEFAULT_TITLE_FONT, mainPlot, true);
         chart.removeLegend();
+        // reverse the x axis to show latest data first
+        mainPlot.setBackgroundPaint(Color.BLACK);
+
         return chart;
     }
  
@@ -86,7 +97,7 @@ public class Candlestick {
     public void addCandle(Date time, double open, double high, double low, double close) {
         try {
            Day Day = new Day(time);
-            ohlcSeries.add(Day, open, high, low, close);
+            ohlcSeries.add(Day , open, high, low, close);
         } catch (Exception e) {
             e.printStackTrace();
         }

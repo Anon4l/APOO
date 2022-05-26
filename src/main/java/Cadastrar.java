@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+package main.java;
 
-/**
- *
- * @author thale
- */
+import javax.swing.JOptionPane;
+
 public class Cadastrar extends javax.swing.JFrame {
 
     /**
@@ -66,6 +61,11 @@ public class Cadastrar extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,8 +120,18 @@ public class Cadastrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        Conecta con = new Conecta();
+        if(con.cadastrar(this.jTextField1.getText(), this.jTextField2.getText()))
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+        else
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar!");
+
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+
+    }
+    //GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
