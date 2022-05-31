@@ -1,11 +1,28 @@
 package main.java;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import javax.swing.JOptionPane;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
+
+import org.jfree.chart.ChartPanel;
+
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 public class Resumo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Resumo
-     */
+    private String codigo = "";
+    private String[] moedas = { "BTC", "USD", "EUR" };
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+    
     public Resumo() {
         initComponents();
+        
     }
 
     /**
@@ -16,13 +33,16 @@ public class Resumo extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Resumo");
@@ -41,35 +61,341 @@ public class Resumo extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Media do valor da moeda no mes", "Variacao da moeda no mes", "Moeda mais valorizada", "Moeda mais desvalorizada" }));
+
+        jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BTC", "USD", "EUR" }));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Selecionar");
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jTextField1.setEnabled(false);
+        
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jMenu1.addMenuListener(new MenuListener() {
+            public void menuSelected(MenuEvent e) {
+                JMenu1ActionPerformed(e);
+            }
+            public void menuDeselected(MenuEvent e) {
+            }
+            public void menuCanceled(MenuEvent e) {
+            }
+        });
+        jMenu2.addMenuListener(new MenuListener() {
+            public void menuSelected(MenuEvent e) {
+                JMenu2ActionPerformed(e);
+            }
+            public void menuDeselected(MenuEvent e) {
+            }
+            public void menuCanceled(MenuEvent e) {
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void JMenu1ActionPerformed(MenuEvent e) {
+        Grafico gf = new Grafico(new ChartPanel(null));
+        this.setVisible(false);
+        gf.setVisible(true); 
+    }
+    private void JMenu2ActionPerformed(MenuEvent e) {
+    	GraficoLive gflive = new GraficoLive(new ChartPanel(null));
+        this.setVisible(false);
+        gflive.setVisible(true);  
+    }
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    	if(jComboBox1.getSelectedItem().equals("Media do valor da moeda no mes")) {
+    		
+    		float media = 0;
+    		String mediaFinal;
+    		this.codigo = "BRL-" + moedas[jComboBox3.getSelectedIndex()];
+    
+            try {
+            	
+            	Moeda[] result = ApiConnector.getMoedaTime(this.codigo,"30");
+            	for(Moeda i: result) { 	
+            		media += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            media /= 60;
+            mediaFinal = df.format(media);
+
+            jTextField1.setText(String.valueOf(mediaFinal));
+            
+            
+            	
+    	} else if(jComboBox1.getSelectedItem().equals("Variacao da moeda no mes")) {
+    		
+    		float media1 = 0,
+    				media2 = 0,
+    				diferencaPercentual = 0;
+    		String diferencaPercentual2;
+    		this.codigo = "BRL-" + moedas[jComboBox3.getSelectedIndex()];
+    		
+    		//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+    		
+    		//LocalDate dataFinal = LocalDate.now();
+            //LocalDate dataInicial = LocalDate.now().minusDays(30);
+            //LocalDate dataOutra = LocalDate.now().minusDays(60);
+            
+            //String dataFinalString = dataFinal.format(dtf);
+            //String dataInicialString = dataInicial.format(dtf);
+            //String dataOutraString = dataOutra.format(dtf);
+            
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime(this.codigo,"30");
+            	for(Moeda i: result) {
+            		media1 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime(this.codigo,"60");
+            	for(Moeda i: result) {
+            		media2 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            media1 /= 60;
+            media2 /= 120;
+            
+            diferencaPercentual = 100 - ((media2 * 100) / media1);
+            
+            diferencaPercentual2 = df.format(diferencaPercentual);      
+            
+    		jTextField1.setText(diferencaPercentual2 + "%");
+    		
+    		
+
+        } else if(jComboBox1.getSelectedItem().equals("Moeda mais valorizada")) {
+        	
+        	float btcMedia1 = 0,
+        			btcMedia2 = 0,
+        			usdMedia1 = 0,
+        			usdMedia2 = 0,
+        			eurMedia1 = 0,
+        			eurMedia2 = 0,
+        			btcDiferencaPercentual = 0,
+        			usdDiferencaPercentual = 0,
+        			eurDiferencaPercentual = 0;
+        	
+        	//BTC
+        	try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-BTC","30");
+            	for(Moeda i: result) {
+            		btcMedia1 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-BTC","60");
+            	for(Moeda i: result) {
+            		btcMedia2 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            btcDiferencaPercentual = 100 - ((btcMedia2 * 100) / btcMedia1);
+            
+            //USD
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-USD","30");
+            	for(Moeda i: result) {
+            		usdMedia1 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            usdDiferencaPercentual = 100 - ((usdMedia2 * 100) / usdMedia1);
+            
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-USD","60");
+            	for(Moeda i: result) {
+            		usdMedia2 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            //EUR
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-EUR","30");
+            	for(Moeda i: result) {
+            		eurMedia1 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-EUR","60");
+            	for(Moeda i: result) {
+            		eurMedia2 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            eurDiferencaPercentual = 100 - ((eurMedia2 * 100) / eurMedia1);
+            
+            if(btcDiferencaPercentual > usdDiferencaPercentual && btcDiferencaPercentual > eurDiferencaPercentual) {
+            	jTextField1.setText("BTC");
+            	
+            } else if(usdDiferencaPercentual > btcDiferencaPercentual && usdDiferencaPercentual > eurDiferencaPercentual) {
+            	jTextField1.setText("USD");
+            	
+            } else if(eurDiferencaPercentual > btcDiferencaPercentual && eurDiferencaPercentual > usdDiferencaPercentual) {
+            	jTextField1.setText("EUR");	
+            	
+            }
+            
+            
+        	
+        } else if(jComboBox1.getSelectedItem().equals("Moeda mais desvalorizada")) {
+        	
+        	float btcMedia1 = 0,
+        			btcMedia2 = 0,
+        			usdMedia1 = 0,
+        			usdMedia2 = 0,
+        			eurMedia1 = 0,
+        			eurMedia2 = 0,
+        			btcDiferencaPercentual = 0,
+        			usdDiferencaPercentual = 0,
+        			eurDiferencaPercentual = 0;
+        	
+        	//BTC
+        	try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-BTC","30");
+            	for(Moeda i: result) {
+            		btcMedia1 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-BTC","60");
+            	for(Moeda i: result) {
+            		btcMedia2 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            btcDiferencaPercentual = 100 - ((btcMedia2 * 100) / btcMedia1);
+            
+            //USD
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-USD","30");
+            	for(Moeda i: result) {
+            		usdMedia1 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            usdDiferencaPercentual = 100 - ((usdMedia2 * 100) / usdMedia1);
+            
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-USD","60");
+            	for(Moeda i: result) {
+            		usdMedia2 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            //EUR
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-EUR","30");
+            	for(Moeda i: result) {
+            		eurMedia1 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            try {
+            	Moeda[] result = ApiConnector.getMoedaTime("BRL-EUR","60");
+            	for(Moeda i: result) {
+            		eurMedia2 += ((Float.parseFloat(i.getValorAlta()) + Float.parseFloat(i.getValorBaixa())));
+            	}
+            } catch (UnirestException e) {
+            	e.printStackTrace();
+            }
+            
+            eurDiferencaPercentual = 100 - ((eurMedia2 * 100) / eurMedia1);
+            
+            if(btcDiferencaPercentual < usdDiferencaPercentual && btcDiferencaPercentual < eurDiferencaPercentual) {
+            	jTextField1.setText("BTC");
+            	
+            } else if(usdDiferencaPercentual < btcDiferencaPercentual && usdDiferencaPercentual < eurDiferencaPercentual) {
+            	jTextField1.setText("USD");
+            	
+            } else if(eurDiferencaPercentual < btcDiferencaPercentual && eurDiferencaPercentual < usdDiferencaPercentual) {
+            	jTextField1.setText("EUR");	
+            	
+            }
+            
+        }
+	}
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -103,11 +429,13 @@ public class Resumo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

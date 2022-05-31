@@ -34,6 +34,8 @@ public class Grafico extends javax.swing.JFrame {
     private int dataInicial = 0;
     private int dataFinal = 0;
     private ChartPanel chart;
+    Resumo resumo = new Resumo();
+    //GraficoLive graficoLive = new GraficoLive(chart);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,7 +85,15 @@ public class Grafico extends javax.swing.JFrame {
             }
             public void menuCanceled(MenuEvent e) {
             }
-
+        });
+        jMenu3.addMenuListener(new MenuListener() {
+            public void menuSelected(MenuEvent e) {
+                JMenu3ActionPerformed(e);
+            }
+            public void menuDeselected(MenuEvent e) {
+            }
+            public void menuCanceled(MenuEvent e) {
+            }
         });
             
 
@@ -169,7 +179,13 @@ public class Grafico extends javax.swing.JFrame {
         gflive.setVisible(true); 
     }
     
-
+    private void JMenu3ActionPerformed(MenuEvent e) {
+        Resumo resumo = new Resumo();
+        this.setVisible(false);
+        resumo.setVisible(true); 
+    }
+    
+       
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.codigo = "BRL-" + moedas[jComboBox1.getSelectedIndex()];
         try{
@@ -184,8 +200,8 @@ public class Grafico extends javax.swing.JFrame {
         }
         else{
             try{
-               Moeda[] result = ApiConnector.getMoedaTime(this.codigo,""+(dataInicial+dataFinal));
-            // //System.out.println(result[0].toString());
+             Moeda[] result = ApiConnector.getMoedaTime(this.codigo,""+(dataInicial+dataFinal));
+             //System.out.println(result[0].toString());
              ChartPanel chart = MoedaChart.show(result,codigo);
              Grafico grafico = new Grafico(chart);
              this.setVisible(false);

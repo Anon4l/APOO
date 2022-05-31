@@ -65,7 +65,7 @@ public class GraficoLive extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Gráfico");
+        setTitle("Gráfico ao vivo");
 
         jScrollPane1.setBackground(new java.awt.Color(250, 250, 250));
         //jScrollPane1.add(chart);
@@ -100,13 +100,21 @@ public class GraficoLive extends javax.swing.JFrame {
 
         jMenu1.addMenuListener(new MenuListener() {
             public void menuSelected(MenuEvent e) {
-                JMenu2ActionPerformed(e);
+                JMenu1ActionPerformed(e);
             }
             public void menuDeselected(MenuEvent e) {
             }
             public void menuCanceled(MenuEvent e) {
             }
-
+        });
+        jMenu3.addMenuListener(new MenuListener() {
+            public void menuSelected(MenuEvent e) {
+                JMenu3ActionPerformed(e);
+            }
+            public void menuDeselected(MenuEvent e) {
+            }
+            public void menuCanceled(MenuEvent e) {
+            }
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,10 +159,15 @@ public class GraficoLive extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void JMenu2ActionPerformed(MenuEvent e) {
+    private void JMenu1ActionPerformed(MenuEvent e) {
         Grafico gf = new Grafico(this.chart);
         this.setVisible(false);
         gf.setVisible(true); 
+    }
+    private void JMenu3ActionPerformed(MenuEvent e) {
+    	Resumo resumo = new Resumo();
+        this.setVisible(false);
+        resumo.setVisible(true); 
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -183,7 +196,8 @@ public class GraficoLive extends javax.swing.JFrame {
             // //System.out.println(result[0].toString());
              ChartPanel chart = MoedaChart.show(result,codigo);
              GraficoLive GraficoLive = new GraficoLive(chart);
-             this.setVisible(false);
+             this.dispose();
+             //this.setVisible(false);
              GraficoLive.setVisible(true);
              jButton1ActionPerformed(evt);
          } catch (UnirestException e) {
