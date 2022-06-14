@@ -7,9 +7,9 @@ public class Conecta {
     public Connection connection = null;
 
     private final String DRIVER = "org.postgresql.Driver";
-    private final String URL = "jdbc:postgresql://localhost:5432/bd";
+    private final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private final String USERNAME = "postgres";
-    private final String PASSWORD = "xpostgresx321";
+    private final String PASSWORD = "postgre";
     private PreparedStatement statement;
     private String  sql;
     private ResultSet resultSet;

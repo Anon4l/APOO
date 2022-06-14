@@ -98,12 +98,12 @@ public class GraficoLive extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Gráfico ao Vivo");
-        jMenu2.setIcon(new javax.swing.ImageIcon("src/main/java/img/perfil.png"));
+        jMenu2.setIcon(new javax.swing.ImageIcon("src/main/java/img/radio.png"));
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Resumo");
-        jMenu3.setIcon(new javax.swing.ImageIcon("src/main/java/img/perfil.png"));
-        jMenuBar1.add(jMenu1);
+        jMenu3.setIcon(new javax.swing.ImageIcon("src/main/java/img/contract.png"));
+        jMenuBar1.add(jMenu3);
         setJMenuBar(jMenuBar1);
 
         jMenu1.addMenuListener(new MenuListener() {
