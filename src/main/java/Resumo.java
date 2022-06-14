@@ -1,5 +1,6 @@
 package main.java;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -34,6 +35,9 @@ public class Resumo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     	
+    	setResizable(false);
+    	
+    	getContentPane().setBackground(Color.BLACK);
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -51,15 +55,15 @@ public class Resumo extends javax.swing.JFrame {
         jButton1.setText("Selecionar");
 
         jMenu1.setText("Gráfico");
-        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\OneDrive\\Documentos\\NetBeansProjects\\APOO\\src\\main\\java\\img\\bar-chart.png"));
+        jMenu1.setIcon(new javax.swing.ImageIcon("src/main/java/img/bar-chart.png"));
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Gráfico ao Vivo");
-        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\OneDrive\\Documentos\\NetBeansProjects\\APOO\\src\\main\\java\\img\\radio.png"));
+        jMenu2.setIcon(new javax.swing.ImageIcon("src/main/java/img/radio.png"));
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Resumo");
-        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\OneDrive\\Documentos\\NetBeansProjects\\APOO\\src\\main\\java\\img\\contract.png"));
+        jMenu3.setIcon(new javax.swing.ImageIcon("src/main/java/img/contract.png"));
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -82,6 +86,11 @@ public class Resumo extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        	public void actionPerformed(java.awt.event.ActionEvent evt) {
+        		jComboBox1ActionPerformed(evt);
+        	}
         });
         jMenu1.addMenuListener(new MenuListener() {
             public void menuSelected(MenuEvent e) {
@@ -137,6 +146,7 @@ public class Resumo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private void JMenu1ActionPerformed(MenuEvent e) {
@@ -397,6 +407,14 @@ public class Resumo extends javax.swing.JFrame {
             
         }
 	}
+    
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    	if(jComboBox1.getSelectedItem().equals("Media do valor da moeda no mes") || jComboBox1.getSelectedItem().equals("Variacao da moeda no mes")) {
+    		jComboBox3.setEnabled(true);
+    	} else if (jComboBox1.getSelectedItem().equals("Moeda mais valorizada") || jComboBox1.getSelectedItem().equals("Moeda mais desvalorizada")) {
+    		jComboBox3.setEnabled(false);
+    	}
+    }
     
     
     public static void main(String args[]) {

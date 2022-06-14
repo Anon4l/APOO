@@ -51,6 +51,10 @@ public class GraficoLive extends javax.swing.JFrame {
     
     private void initComponents(ChartPanel chart) {
         this.chart = chart;
+        
+        setResizable(false);
+        
+        getContentPane().setBackground(Color.BLACK);
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextField1 = new javax.swing.JTextField();
@@ -76,9 +80,11 @@ public class GraficoLive extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("até");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Moeda:");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -88,15 +94,15 @@ public class GraficoLive extends javax.swing.JFrame {
         jComboBox1.setBorder(null);
 
         jMenu1.setText("Gráfico");
-        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\OneDrive\\Documentos\\NetBeansProjects\\APOO\\src\\main\\java\\img\\bar-chart.png"));
+        jMenu1.setIcon(new javax.swing.ImageIcon("src/main/java/img/bar-chart.png"));
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Gráfico ao Vivo");
-        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\OneDrive\\Documentos\\NetBeansProjects\\APOO\\src\\main\\java\\img\\radio.png"));
+        jMenu2.setIcon(new javax.swing.ImageIcon("src/main/java/img/radio.png"));
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Resumo");
-        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\OneDrive\\Documentos\\NetBeansProjects\\APOO\\src\\main\\java\\img\\contract.png"));
+        jMenu3.setIcon(new javax.swing.ImageIcon("src/main/java/img/contract.png"));
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -127,7 +133,7 @@ public class GraficoLive extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(260, 260, 260)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -160,6 +166,7 @@ public class GraficoLive extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private void JMenu1ActionPerformed(MenuEvent e) {
