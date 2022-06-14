@@ -94,7 +94,22 @@ public class GraficoLive extends javax.swing.JFrame {
         jComboBox1.setBorder(null);
 
         jMenu1.setText("Gráfico");
+<<<<<<< HEAD
         jMenu1.setIcon(new javax.swing.ImageIcon("src/main/java/img/bar-chart.png"));
+=======
+<<<<<<< HEAD
+        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\eclipse-workspace\\trabalhoFinalDesktop\\src\\trabalhoFinalDesktop\\img\\perfil.png"));
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Gráfico ao Vivo");
+        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\eclipse-workspace\\trabalhoFinalDesktop\\src\\trabalhoFinalDesktop\\img\\perfil.png"));
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Resumo");
+        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\eclipse-workspace\\trabalhoFinalDesktop\\src\\trabalhoFinalDesktop\\img\\perfil.png"));
+=======
+        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\OneDrive\\Documentos\\NetBeansProjects\\APOO\\src\\main\\java\\img\\bar-chart.png"));
+>>>>>>> 7652c8f7e77e9ef62a64e0ba8d71fb691c6ef8c8
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Gráfico ao Vivo");
@@ -102,7 +117,12 @@ public class GraficoLive extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Resumo");
+<<<<<<< HEAD
         jMenu3.setIcon(new javax.swing.ImageIcon("src/main/java/img/contract.png"));
+=======
+        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\thale\\OneDrive\\Documentos\\NetBeansProjects\\APOO\\src\\main\\java\\img\\contract.png"));
+>>>>>>> 387cec1e15e6282be940bdaf6aa255e6840c55af
+>>>>>>> 7652c8f7e77e9ef62a64e0ba8d71fb691c6ef8c8
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
